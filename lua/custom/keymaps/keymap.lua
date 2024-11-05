@@ -1,6 +1,3 @@
-vim.opt.colorcolumn = '80'
-vim.opt.termguicolors = true
-
 -- Open File Explorer
 vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
 
