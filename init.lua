@@ -148,7 +148,9 @@ vim.opt.splitbelow = true
 --  See `:help 'list'`
 --  and `:help 'listchars'`
 vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+-- vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = { tab = '· ', trail = '·', nbsp = '␣' }
+vim.opt.expandtab = true
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = 'split'
@@ -628,8 +630,7 @@ require('lazy').setup({
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         -- ts_ls = {},
         --
-        ruby_lsp = {},
-
+        rubocop = {},
         lua_ls = {
           -- cmd = {...},
           -- filetypes = { ...},
@@ -659,6 +660,8 @@ require('lazy').setup({
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
+        'erb-formatter',
+        'erb-lint',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -787,7 +790,8 @@ require('lazy').setup({
           -- Accept ([y]es) the completion.
           --  This will auto-import if your LSP supports it.
           --  This will expand snippets if the LSP sent a snippet.
-          ['<C-y>'] = cmp.mapping.confirm { select = true },
+          --['<C-y>'] = cmp.mapping.confirm { select = true },
+          ['<Tab>'] = cmp.mapping.confirm { select = true },
 
           -- If you prefer more traditional completion keymaps,
           -- you can uncomment the following lines
@@ -913,6 +917,7 @@ require('lazy').setup({
         'vim',
         'vimdoc',
         'ruby',
+        'go',
       },
       -- Autoinstall languages that are not installed
       auto_install = true,
